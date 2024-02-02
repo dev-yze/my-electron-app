@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <!-- https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <title>你好!</title>
-  </head>
-  <body>
-    <h1>你好!</h1>
-    我们正在使用 Node.js 
-	<span id="node-version"></span>,
+
+<head>
+  <meta charset="UTF-8">
+  <!-- https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CSP -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <title>你好!</title>
+</head>
+
+<body>
+  <h1>你好!</h1>
+  <div> 我们正在使用 Node.js
+    <span id="node-version"></span>,
     Chromium
-	<span id="chrome-version"></span>,
+    <span id="chrome-version"></span>,
     和 Electron
-	<span id="electron-version"></span>.
-  </body>
+    <span id="electron-version"></span>
+  </div>
+  <div id="rec-main-data"></div>
+</body>
+<script src="./render.js"></script>
+
 </html>

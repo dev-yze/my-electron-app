@@ -1,4 +1,5 @@
-const { app, BrowserWindow } = require('electron')
+// 主进程代码
+const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 
 function createWindow () {
@@ -15,6 +16,11 @@ function createWindow () {
 
 
 app.whenReady().then(() => {
+
+  // 使用ipcMain.handle()方法注册一个处理程序，该处理程序将在渲染进程中使用ipcRenderer.invoke()方法调用
+  ipcMain.handle('ping', () => {
+    return 'pong' + new Date().getTime()
+  })
 	
   createWindow()
 
