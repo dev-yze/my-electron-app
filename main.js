@@ -2,13 +2,15 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 
-function createWindow () {
+function createWindow() {
   const win = new BrowserWindow({
-	width: 800,
-	height: 600,
-	webPreferences: {
-	  preload: path.join(__dirname, 'preload.js')
-	}
+    width: 800,
+    height: 600,
+    // 预加载脚本，可以在此文件中调用 node.js 的 API，
+    // 但不能直接在渲染进程中调用，以防止远程代码执行漏洞，例如在渲染进程中调用 require('electron')。
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js')
+    }
   })
   win.loadFile('index.html')
   win.webContents.openDevTools()
@@ -21,7 +23,7 @@ app.whenReady().then(() => {
   ipcMain.handle('ping', () => {
     return 'pong' + new Date().getTime()
   })
-	
+
   createWindow()
 
   app.on('activate', () => {
@@ -34,7 +36,7 @@ app.whenReady().then(() => {
   // 对应用程序和它们的菜单栏来说应该时刻保持激活状态, 
   // 直到用户使用 Cmd + Q 明确退出
   app.on('window-all-closed', () => {
-	if (process.platform !== 'darwin') app.quit()
+    if (process.platform !== 'darwin') app.quit()
   })
-  
+
 })

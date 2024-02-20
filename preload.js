@@ -23,3 +23,8 @@ contextBridge.exposeInMainWorld('versions', {
 	ping: () => ipcRenderer.invoke('ping')
 })
 
+contextBridge.exposeInMainWorld('app', {
+	title: 'MY Electron App',
+	version: '1.0.0'
+})
+
