@@ -28,3 +28,8 @@ contextBridge.exposeInMainWorld('app', {
 	version: '1.0.0'
 })
 
+
+contextBridge.exposeInMainWorld('route', {
+	page_monitor: () => ipcRenderer.invoke('page_monitor'),
+})
+
